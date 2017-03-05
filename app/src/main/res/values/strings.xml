@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">DfpPlayer</string>
+
+    <!-- A sample Brightcove Edge Account ID -->
+    <!--<string name="account">3636334163001</string>-->
+    <string name="account">5344802198001</string>
+
+    <!-- A sample Brightcove Edge Policy Key -->
+    <!--<string name="policy">BCpkADawqM1W-vUOMe6RSA3pA6Vw-VWUNn5rL0lzQabvrI63-VjS93gVUugDlmBpHIxP16X8TSe5LSKM415UHeMBmxl7pqcwVY_AZ4yKFwIpZPvXE34TpXEYYcmulxJQAOvHbv2dpfq-S_cm</string>-->
+
+    <string name="policy">BCpkADawqM0dx5uXvRsavLWOOQOKs-i2kp5nHiyV8_y70mqUPRVvbeBHsXy-LSGo02CN9l3l5Ulx_zG5TN6TAVtCuEYoVi4ugDDtBwPk2Oy_tWiT2ycaV7AV9BwaCr3fnPPNIhnrC6l-y0ab</string>
+
+    <!-- A sample Brightcove Video ID -->
+    <!--<string name="videoId">3637773814001</string>-->
+    <string name="videoId">5346598583001</string>
+
+
+</resources>
