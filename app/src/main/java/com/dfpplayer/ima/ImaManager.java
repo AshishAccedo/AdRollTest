@@ -71,6 +71,12 @@ public final class ImaManager {
                 Log.v(TAG, "################" + event.getType());
             }
         });
+        eventEmitter.on(EventType.AD_ERROR, new EventListener() {
+            @Override
+            public void processEvent(Event event) {
+                Log.v(TAG, "################" + event.getType());
+            }
+        });
 
         // Create the Brightcove IMA Plugin and register the event emitter so that the plugin
         // can deal with video events.
