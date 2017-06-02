@@ -81,18 +81,6 @@ public class DfpPlayerFragment extends BrightcovePlayerFragment {
 //        Catalog catalog = new Catalog("ErQk9zUeDVLIp8Dc7aiHKq8hDMgkv5BFU7WGshTc-hpziB3BuYh28A..");
 
 
-//        Catalog catalog = new Catalog(brightcoveVideoView.getEventEmitter(), "3303963094001"/*getString(R.string.account)*/, "BCpkADawqM3zXLtsEM0nAyA_3o3TmZnG6bZTXFmjZ8X_rmFMqlpB78l0aiRELs7MWACf4mYN92qMOLMxfZN6Xr3cQ_0R3G2qBiho3X3Nc2yTv7DH4APQ-EimMJQ3crX0zc0mJMy9CtSqkmli"/*getString(R.string.policy)*/);
-//        catalog.findVideoByID("4283173439001"/*getString(R.string.videoId)*/, new VideoListener() {
-//
-//            // Add the video found to the queue with add().
-//            // Start playback of the video with start().
-//            @Override
-//            public void onVideo(Video video) {
-//                Log.v(TAG, "onVideo: video = " + video);
-//                brightcoveVideoView.add(video);
-//                brightcoveVideoView.start();
-//            }
-//        });
 
         Video video = createVideoFromUrl("https://sonyhdslive-lh.akamaihd.net/i/LIVELINEARCHANNELWAHSD_2@324771/index_100_av-p.m3u8?sd=10&rebase=on&id=AgC2SfL6YBG2JpMHMVl8BkTC0SpVbBy%2frYkaeUHMRu8inYQ3DHLx4I+pRLNhOPyxeLBTSrs2hL4lZw%3d%3d&hdntl=exp=1496471827~acl=%2fi%2f*~data=hdntl~hmac=808df26a60cb28eff4d28a242510d2dba361d9d8658f1e3bbe3090f85e633632");
         brightcoveVideoView.add(video);
