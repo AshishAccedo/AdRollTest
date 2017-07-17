@@ -5,7 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
-    private DfpPlayerFragment mDfpPLayerFragment;
+    private DfpAdPlayerFragment mDfpPLayerFragment;
     private static final String FRAGMENT_TAG = "DfpPlayer";
 
 
@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
         if (mDfpPLayerFragment != null) {
             return;
         }
-        mDfpPLayerFragment = DfpPlayerFragment.newInstance();
+        mDfpPLayerFragment = DfpAdPlayerFragment.newInstance();
         getFragmentManager()
                 .beginTransaction()
                 .replace(R.id.dfp_player_frag_container, mDfpPLayerFragment, FRAGMENT_TAG)

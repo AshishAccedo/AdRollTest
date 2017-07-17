@@ -36,9 +36,9 @@ dependencies {
     testCompile 'junit:junit:4.12'
 
     compile 'com.google.android.gms:play-services-ads:9.8.0'
-    compile 'com.brightcove.player:exoplayer:4.13.1'
-    compile 'com.brightcove.player:android-sdk:4.13.1'
-    compile 'com.brightcove.player:android-ima-plugin:4.13.1'
+    compile 'com.brightcove.player:exoplayer:4.13.2'
+    compile 'com.brightcove.player:android-sdk:4.13.2'
+    compile 'com.brightcove.player:android-ima-plugin:4.13.2'
 
     compile files('libs/ima-android-v3-3.6.0.jar')
 }

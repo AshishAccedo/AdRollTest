@@ -82,7 +82,7 @@ public class DfpPlayerFragment extends BrightcovePlayerFragment {
 
 
 
-        Video video = createVideoFromUrl("https://sonyhdslive-lh.akamaihd.net/i/LIVELINEARCHANNELWAHSD_2@324771/index_100_av-p.m3u8?sd=10&rebase=on&id=AgC2SfL6YBG2JpMHMVl8BkTC0SpVbBy%2frYkaeUHMRu8inYQ3DHLx4I+pRLNhOPyxeLBTSrs2hL4lZw%3d%3d&hdntl=exp=1496471827~acl=%2fi%2f*~data=hdntl~hmac=808df26a60cb28eff4d28a242510d2dba361d9d8658f1e3bbe3090f85e633632");
+        Video video = createVideoFromUrl("https://sonyhdslive-lh.akamaihd.net/i/LIVELINEARCHANNELWAHSD_2@324771/master.m3u8?__nn__=4412915836001&hdnea=st=1499666400~exp=1499670000~acl=/i/*~hmac=5756bae50632f5de43e5df4e704edba896b71695760c42cd4202378fe8a8bec6");
         brightcoveVideoView.add(video);
         brightcoveVideoView.start();
 //        ImaManager.setupIma(brightcoveVideoView, googleAds);

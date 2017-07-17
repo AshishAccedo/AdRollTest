@@ -1,10 +1,12 @@
 <resources>
     <string name="app_name">DfpPlayer</string>
 
-    <!-- A sample Brightcove Edge Account ID -->
+    <string name="account">4338955589001</string>
+    <string name="policy">BCpkADawqM3x5m3aBa1tXxiyu9KboB_bCv2ovuE1KD5dnZey33yEa36KadPClsC8HUhJJNVX5sCrvHQxs8XG9oAYb_idphQWPHYey_gQCy9wCPvMmCfMG3Yu_hhw5XbKQYFDL7398CBpjQph</string>
 
+    <!--- video id iwht multiple cue points at mid-->
+    <!--<string name="videoId">5425206474001</string>-->
 
-    <!-- A sample Brightcove Video ID -->
-
+    <string name="videoId">5425206474001</string>
 
 </resources>
