@@ -53,9 +53,21 @@ public class DfpAdPlayerFragment extends BrightcovePlayerFragment implements Eve
             //Sony Release Ad
 //            "https://pubads.g.doubleclick.net/gampad/ads?sz=640x480&iu=/423477888/SonyLiv/SonyLiv_Pre-Roll_Android&impl=s&gdfp_req=1&ad_rule=1&env=vp&output=vmap&unviewed_position_start=1&url=[referrer_url]&description_url=[description_url]&correlator=1234&cmsid=248"
                 //"https://pubads.g.doubleclick.net/gampad/live/ads?sz=640x480&iu=/423477888/SonyLiv_Test/SonyLiv_Pre-Roll_Test&impl=s&gdfp_req=1&env=vp&output=vast&unviewed_position_start=1&url=[referrer_url]&description_url=[description_url]&correlator=[timestamp]&cmsid=248"
-              "https://pubads.g.doubleclick.net/gampad/ads?sz=640x480&iu=/423477888/SonyLiv/SonyLiv_Pre-Roll_Android&impl=s&gdfp_req=1&ad_rule=1&env=vp&output=vmap&unviewed_position_start=1&url=%5Breferrer_url%5D&description_url=%5Bdescription_url%5D&correlator=1234&vid=5382933645001&cmsid=248&cust_params=user_age=0&user_gender=&user_location=18.77560309,73.2911221&user_watched=Ep.%2030%20-%20Indian%20Idol%20-%20Grand%20Finale%20-%20Part%202,Ep.%2030%20-%20Indian%20Idol%20-%20Grand%20Finale%20-%20Part%201&user_genre=Reality%20Show,Reality%20Show&user_video_show=indianidol,indianidol&user_interest="
+//              "https://pubads.g.doubleclick.net/gampad/ads?sz=640x480&iu=/423477888/SonyLiv/SonyLiv_Pre-Roll_Android&ciu_szs=1x1&impl=s&gdfp_req=1&env=vp&output=xml_vast2&unviewed_position_start=1"
+            // Google sample Linear ad
+//            "https://pubads.g.doubleclick.net/gampad/ads?sz=640x480&iu=/124319096/external/single_ad_samples&ciu_szs=300x250&impl=s&gdfp_req=1&env=vp&output=vast&unviewed_position_start=1&cust_params=deployment%3Ddevsite%26sample_ct%3Dlinear&correlator="
+            // google sample pre-mid-post
+//            "https://pubads.g.doubleclick.net/gampad/ads?sz=640x480&iu=/124319096/external/ad_rule_samples&ciu_szs=300x250&ad_rule=1&impl=s&gdfp_req=1&env=vp&output=xml_vast2&unviewed_position_start=1&cust_params=deployment%3Ddevsite%26sample_ar%3Dpremidpost&cmsid=496&vid=short_onecue&correlator="
+            // sony VAST URL
+//                "https://pubads.g.doubleclick.net/gampad/ads?sz=640x480&iu=/423477888/SonyLiv/SonyLiv_Pre-Roll_Android&ciu_szs=1x1&ad_rule=1&impl=s&gdfp_req=1&env=vp&output=xml_vast2&unviewed_position_start=1"
             // Honda Pilot
 //            "http://pubads.g.doubleclick.net/gampad/ads?sz=400x300&iu=%2F6062%2Fhanna_MA_group%2Fvideo_comp_app&ciu_szs=&impl=s&gdfp_req=1&env=vp&output=xml_vast2&unviewed_position_start=1&m_ast=vast&url=[referrer_url]&correlator=[timestamp]"
+
+            // Google sample Skippable Ad
+                "https://pubads.g.doubleclick.net/gampad/ads?sz=640x480&iu=/124319096/external/single_ad_samples&ciu_szs=300x250&impl=s&gdfp_req=1&env=vp&output=vast&unviewed_position_start=1&cust_params=deployment%3Ddevsite%26sample_ct%3Dskippablelinear&correlator="
+
+            //SonyExternal Profile Ad tag URL
+//            "https://pubads.g.doubleclick.net/gampad/live/ads?sz=640x480&iu=/423477888/SonyLiv_Test/SonyLiv_Pre-Roll_Test&impl=s&gdfp_req=1&env=vp&output=vast&unviewed_position_start=1&url=[referrer_url]&description_url=[description_url]&correlator=[timestamp]"
     };
     private ImaSdkFactory sdkFactory;
 
@@ -160,14 +172,14 @@ public class DfpAdPlayerFragment extends BrightcovePlayerFragment implements Eve
 
         // midroll at 10 seconds.
         // Due HLS bugs in the Android MediaPlayer, midrolls are not supported.
-        if (!source.getDeliveryType().equals(DeliveryType.HLS)) {
-            int cuepointTime = 10 * (int) DateUtils.SECOND_IN_MILLIS;
-            cuePoint = new CuePoint(cuepointTime, cuePointType, properties);
-            details.put(Event.CUE_POINT, cuePoint);
-            eventEmitter.emit(EventType.SET_CUE_POINT, details);
-            // Add a marker where the ad will be.
-            mediaController.getBrightcoveSeekBar().addMarker(cuepointTime);
-        }
+//        if (!source.getDeliveryType().equals(DeliveryType.HLS)) {
+//            int cuepointTime = 10 * (int) DateUtils.SECOND_IN_MILLIS;
+//            cuePoint = new CuePoint(cuepointTime, cuePointType, properties);
+//            details.put(Event.CUE_POINT, cuePoint);
+//            eventEmitter.emit(EventType.SET_CUE_POINT, details);
+//            // Add a marker where the ad will be.
+//            mediaController.getBrightcoveSeekBar().addMarker(cuepointTime);
+//        }
 
         // postroll
         cuePoint = new CuePoint(CuePoint.PositionType.AFTER, cuePointType, properties);
@@ -262,7 +274,7 @@ public class DfpAdPlayerFragment extends BrightcovePlayerFragment implements Eve
 
     @Override
     public void processEvent(Event event) {
-        Log.e(TAG, "##############" + event.getType().toString());
+        Log.e(TAG, "##############" + event.getType());
 
         if (event.getType().equals(EventType.DID_SET_SOURCE)) {
 
