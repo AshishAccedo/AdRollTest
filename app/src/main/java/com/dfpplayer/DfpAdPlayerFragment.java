@@ -25,6 +25,7 @@ import com.brightcove.player.util.StringUtil;
 import com.brightcove.player.view.BrightcovePlayerFragment;
 import com.brightcove.player.view.BrightcoveVideoView;
 import com.google.ads.interactivemedia.v3.api.AdDisplayContainer;
+import com.google.ads.interactivemedia.v3.api.AdsRenderingSettings;
 import com.google.ads.interactivemedia.v3.api.AdsRequest;
 import com.google.ads.interactivemedia.v3.api.ImaSdkFactory;
 
@@ -64,8 +65,14 @@ public class DfpAdPlayerFragment extends BrightcovePlayerFragment implements Eve
 //            "http://pubads.g.doubleclick.net/gampad/ads?sz=400x300&iu=%2F6062%2Fhanna_MA_group%2Fvideo_comp_app&ciu_szs=&impl=s&gdfp_req=1&env=vp&output=xml_vast2&unviewed_position_start=1&m_ast=vast&url=[referrer_url]&correlator=[timestamp]"
 
             // Google sample Skippable Ad
-                "https://pubads.g.doubleclick.net/gampad/ads?sz=640x480&iu=/124319096/external/single_ad_samples&ciu_szs=300x250&impl=s&gdfp_req=1&env=vp&output=vast&unviewed_position_start=1&cust_params=deployment%3Ddevsite%26sample_ct%3Dskippablelinear&correlator="
+//                "https://pubads.g.doubleclick.net/gampad/ads?sz=640x480&iu=/124319096/external/single_ad_samples&ciu_szs=300x250&impl=s&gdfp_req=1&env=vp&output=vast&unviewed_position_start=1&cust_params=deployment%3Ddevsite%26sample_ct%3Dskippablelinear&correlator="
 
+//            "https://pubads.g.doubleclick.net/gampad/ads?sz=640x480&iu=/423477888/SonyLiv_Test/SonyLiv_Pre-Roll_Test&impl=s&gdfp_req=1&env=vp&output=vast&unviewed_position_start=1&url=[referrer_url]&description_url=[description_url]&correlator=[timestamp]"
+
+            "http://pubads.g.doubleclick.net/gampad/ads?sz=640x480&iu=%2F15018773%2Feverything2&ciu_szs=300x250%2C468x60%2C728x90&impl=s&gdfp_req=1&env=vp&output=xml_vast2&unviewed_position_start=1&url=dummy&correlator=[timestamp]&cmsid=133&vid=10XWSh7W4so&ad_rule=1"
+
+            // vast URL(pre, mid and post)
+//            "https://pubads.g.doubleclick.net/gampad/ads?sz=640x480&iu=/124319096/external/ad_rule_samples&ciu_szs=300x250&ad_rule=1&impl=s&gdfp_req=1&env=vp&output=vast&unviewed_position_start=1&cust_params=deployment%3Ddevsite%26sample_ar%3Dpremidpostpod&cmsid=496&vid=short_onecue&correlator="
             //SonyExternal Profile Ad tag URL
 //            "https://pubads.g.doubleclick.net/gampad/live/ads?sz=640x480&iu=/423477888/SonyLiv_Test/SonyLiv_Pre-Roll_Test&impl=s&gdfp_req=1&env=vp&output=vast&unviewed_position_start=1&url=[referrer_url]&description_url=[description_url]&correlator=[timestamp]"
     };
@@ -139,7 +146,7 @@ public class DfpAdPlayerFragment extends BrightcovePlayerFragment implements Eve
         eventEmitter.on(EventType.AD_COMPLETED, this);
         eventEmitter.on(EventType.SOURCE_NOT_FOUND, this);
         eventEmitter.on(EventType.SOURCE_NOT_PLAYABLE, this);
-//        eventEmitter.on(EventType.PROGRESS, this);
+        eventEmitter.on(EventType.PROGRESS, this);
         eventEmitter.on(EventType.BUFFERED_UPDATE, this);
         eventEmitter.on(EventType.ENTER_FULL_SCREEN, this);
         eventEmitter.on(EventType.EXIT_FULL_SCREEN, this);
@@ -161,14 +168,14 @@ public class DfpAdPlayerFragment extends BrightcovePlayerFragment implements Eve
      * abastraction for the Google IMA Plugin setup code.
      */
     private void setupCuePoints(Source source) {
-        String cuePointType = "ad";
-        Map<String, Object> properties = new HashMap<String, Object>();
-        Map<String, Object> details = new HashMap<String, Object>();
-
-        // preroll
-        CuePoint cuePoint = new CuePoint(CuePoint.PositionType.BEFORE, cuePointType, properties);
-        details.put(Event.CUE_POINT, cuePoint);
-        eventEmitter.emit(EventType.SET_CUE_POINT, details);
+//        String cuePointType = "ad";
+//        Map<String, Object> properties = new HashMap<String, Object>();
+//        Map<String, Object> details = new HashMap<String, Object>();
+//
+//        // preroll
+//        CuePoint cuePoint = new CuePoint(CuePoint.PositionType.BEFORE, cuePointType, properties);
+//        details.put(Event.CUE_POINT, cuePoint);
+//        eventEmitter.emit(EventType.SET_CUE_POINT, details);
 
         // midroll at 10 seconds.
         // Due HLS bugs in the Android MediaPlayer, midrolls are not supported.
@@ -182,9 +189,9 @@ public class DfpAdPlayerFragment extends BrightcovePlayerFragment implements Eve
 //        }
 
         // postroll
-        cuePoint = new CuePoint(CuePoint.PositionType.AFTER, cuePointType, properties);
-        details.put(Event.CUE_POINT, cuePoint);
-        eventEmitter.emit(EventType.SET_CUE_POINT, details);
+//        cuePoint = new CuePoint(CuePoint.PositionType.AFTER, cuePointType, properties);
+//        details.put(Event.CUE_POINT, cuePoint);
+//        eventEmitter.emit(EventType.SET_CUE_POINT, details);
     }
 
     /**
@@ -267,14 +274,16 @@ public class DfpAdPlayerFragment extends BrightcovePlayerFragment implements Eve
 //            }
 //        });
 
-        // Create the Brightcove IMA Plugin and register the event emitter so that the plugin
-        // can deal with video events.
-        googleIMAComponent = new GoogleIMAComponent(brightcoveVideoView, eventEmitter);
+        final AdsRenderingSettings adsRenderingSettings = sdkFactory.createAdsRenderingSettings();
+        adsRenderingSettings.setEnablePreloading(true);
+
+        googleIMAComponent = new GoogleIMAComponent(brightcoveVideoView, eventEmitter, true, adsRenderingSettings);
     }
 
     @Override
     public void processEvent(Event event) {
-        Log.e(TAG, "##############" + event.getType());
+        Log.e(TAG, "##############" + event.getType() + " position : "+ brightcoveVideoView.getCurrentPosition());
+
 
         if (event.getType().equals(EventType.DID_SET_SOURCE)) {
 
